@@ -99,7 +99,59 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/loginResponse'
-                
+  /profile/address:
+    post:
+      security:
+        - BearerAuth: []
+      tags:
+        - Profile
+      summary: Update Merchant Profile
+      requestBody:
+        description: Update merchant profile information
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/address'
+      responses:
+        '200':
+          description: Successful Updation of address
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/address'
+    get:
+      security:
+        - BearerAuth: []
+      tags:
+        - Profile
+      summary: Get Merchant Profile
+      responses:
+        '200':
+          description: Successful Updation of address
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/address'
+  /profile/password:
+    post:
+      security:
+        - BearerAuth: []
+      tags:
+        - Profile
+      summary: Update Merchant Password
+      requestBody:
+        description: Update merchant profile password
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/password'
+      responses:
+        '200':
+          description: Successful updation
+          content:
+              application/json:
+                example:
+                  message: Password updated successfully!
   /wallet:
     post:
       security:
@@ -793,7 +845,24 @@ components:
           type: string
           format: date-time
           example: 2023-09-23T18:22:38.000000Z
-       
+    address:
+      type: object
+      properties:
+        address:
+          type: string
+        street:
+          type: string
+        city:
+          type: string
+        postcode:
+          type: string
+        country:
+          type: string
+    password:
+      type: object
+      properties:
+        password:
+          type: string
   securitySchemes:
     BearerAuth:            # arbitrary name for the security scheme
       type: http
